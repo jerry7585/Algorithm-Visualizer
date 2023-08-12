@@ -202,6 +202,8 @@ class appWindow():
     # function that prepares for a pathfind and runs pathfind function
     def run_algorithm(self, key):
         self.coords.remove_last()
+        self.placing_walls == False
+        self.removing_walls == False
 
         # create the maze array and remove missed checkpoint numbers
         self.coords.create_maze(app)
@@ -280,8 +282,11 @@ class coordinate():
             
         self.maze = [[0 for x in range(largest)] for y in range(largest)]
         for wall in self.walls:
-            wall_x, wall_y = wall
-            self.maze[wall_x][wall_y] = 1
+            try:
+                wall_x, wall_y = wall
+                self.maze[wall_x][wall_y] = 1
+            except:
+                pass
 
 
 # function for pathfinding using dfs, bfs, dijkstra and astar
